@@ -1,9 +1,10 @@
 import express from 'express';
 import pg from 'pg';
 import bcrypt from 'bcrypt';
-import {handleRegister} from './controllers/register.js';
+import handleRegister from './controllers/register.js';
 const app = express();
 const port = 3000;
+
 const { Pool } = pg;
 const pool = new Pool({
   user: 'postgres',
@@ -14,19 +15,6 @@ const pool = new Pool({
 })
 
 
-  
-
-var req = {
-    body: {
-        roll_number: 61123,
-        email: "sam@gmail.com",
-        password: "lunar"
-    }
-}
-const res = {
-
-}
-handleRegister(req, res, pool, bcrypt);
 
 app.use(express.json());
 
@@ -34,15 +22,7 @@ app.get('/', (req, res) => {
     res.send('Hello!');
 })
 
-app.post('/register', (req, res) => {
-    if (handleRegister(req, res, pool, bcrypt))
-     {
-        res.json("registered");
-    }
-    else
-        res.status(400).json("error registering!!");
-});
-
+app.post('/register',(req,res)=>handleRegister(req, res, pool, bcrypt));
 
 app.listen(port, () => {
     console.log(`qna-server has started http://localhost:${port}`);

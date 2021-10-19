@@ -1,7 +1,6 @@
-export const handleRegister = (req,res,pool,bcrypt) => {
+const handleRegister = (req,res,pool,bcrypt) => {
     const {roll_number,email,password} = req.body;
     var hash = bcrypt.hashSync(password,3);
-    console.log(hash);
 
     const creation_date = new Date();
     
@@ -12,22 +11,30 @@ export const handleRegister = (req,res,pool,bcrypt) => {
         
     }
 
-    const displayUsers = {
-        text : 'SELECT * FROM users'
+    const insertIntoLogin = {
+        text : 'INSERT INTO login_details VALUES($1,$2)',
+        values : [roll_number,hash]
     }
 
-    pool
-        .query(insertIntoUsers)
-        .then(res => {
-            console.log(res)
-            pool.query(displayUsers)
-            .then(res => {
-                console.log(res)
-            })
-        })
 
-        .catch(err => console.error(err))
+  pool.query('BEGIN')
+    .then ( result => pool
+        .query(insertIntoUsers) 
+        .then(result => pool
+            .query(insertIntoLogin)
+            .then(result => pool
+                .query('COMMIT')
+                .then(result => res.json("Succesfully Registered. Login NOW") )
+            )   
+        )
+    ) 
 
-
-
+    .catch(err => {
+        console.error(err.detail)
+        pool.query('ROLLBACK')
+        res.status(400).json("Registration Unsuccessful")
+    })
+    
 }  
+
+export default handleRegister;
