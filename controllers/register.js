@@ -1,37 +1,33 @@
-
-
- export const handleRegister = (req,res,db,bcrypt) => {
+export const handleRegister = (req,res,pool,bcrypt) => {
     const {roll_number,email,password} = req.body;
+    var hash = bcrypt.hashSync(password,3);
+    console.log(hash);
 
-
-var hash = bcrypt.hashSync(password);
-
-db.query('BEGIN',err => {
-    if(shouldAbort(err)) return;
+    const creation_date = new Date();
+    
+    
     const insertIntoUsers = {
-        text : "INSERT INTO users(roll_number,email) VALUES($1,$2)",
-        values : [roll_number,email]
+        text : 'INSERT INTO users(roll_number,creation_date,email) VALUES($1,$2,$3)',
+        values : [roll_number,creation_date,email],
+        
     }
-    db.query(insertIntoUsers,(err,res) => {
-        if(shouldAbort(err)) return;
-        const insertIntoLogin = {
-            text : "INSERT INTO login_details(roll_number,password_hash) VALUES($1,$2)",
-            values : [roll_number,hash]
-        }
-        db.query(insertIntoLogin,(res,err) => {
-            if(shouldAbort(err)) return;
-            db.query('COMMIT',err => {
-                if(err)
-                {
-                    console.error('Error committing transaction',err.details)
-                }
-                done()
+
+    const displayUsers = {
+        text : 'SELECT * FROM users'
+    }
+
+    pool
+        .query(insertIntoUsers)
+        .then(res => {
+            console.log(res)
+            pool.query(displayUsers)
+            .then(res => {
+                console.log(res)
             })
         })
-    })
-    
 
-})
+        .catch(err => console.error(err))
 
 
-} 
+
+}  
