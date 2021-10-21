@@ -1,0 +1,72 @@
+[
+ {
+   "roll_number": 70001,
+   "user_name": "Ellary",
+   "creation_date": "2021-09-27 08:43:58",
+   "about_me": "Javascript developer",
+   "email": "Ellary@gmail.com"
+ },
+ {
+   "roll_number": 70002,
+   "user_name": "Amble",
+   "creation_date": "2021-01-01 16:03:53",
+   "about_me": "andriod developer",
+   "email": "Amble@gmail.com"
+ },
+ {
+   "roll_number": 70003,
+   "user_name": "Lu",
+   "creation_date": "2021-02-13 16:55:17",
+   "about_me": "Javascript developer",
+   "email": "Lu@gmail.com"
+ },
+ {
+   "roll_number": 70004,
+   "user_name": "Romonda",
+   "creation_date": "2021-05-05 19:59:33",
+   "about_me": "React developer",
+   "email": "Romonda@gmail.com"
+ },
+ {
+   "roll_number": 70005,
+   "user_name": "Tania",
+   "creation_date": "2020-12-24 22:24:02",
+   "about_me": "andriod developer",
+   "email": "Tania@gmail.com"
+ },
+ {
+   "roll_number": 70006,
+   "user_name": "Findlay",
+   "creation_date": "2021-01-14 08:45:50",
+   "about_me": "",
+   "email": "Findlay@gmail.com"
+ },
+ {
+   "roll_number": 70007,
+   "user_name": "Kalina",
+   "creation_date": "2021-06-22 12:32:47",
+   "about_me": "4th year student",
+   "email": "Kalina@gmail.com"
+ },
+ {
+   "roll_number": 70008,
+   "user_name": "Wylie",
+   "creation_date": "2021-04-07 23:38:50",
+   "about_me": "Javascript developer",
+   "email": "Wylie@gmail.com"
+ },
+ {
+   "roll_number": 70009,
+   "user_name": "Bonnibelle",
+   "creation_date": "2021-10-10 00:27:15",
+   "about_me": "4th year student",
+   "email": "Bonnibelle@gmail.com"
+ },
+ {
+   "roll_number": 70010,
+   "user_name": "Hildy",
+   "creation_date": "2021-05-17 16:56:23",
+   "about_me": "4th year student",
+   "email": "Hildy@gmail.com"
+ }
+]
