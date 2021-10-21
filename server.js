@@ -4,8 +4,12 @@ import bcrypt, { compareSync } from 'bcrypt';
 import handleRegister from './controllers/register.js';
 import handleAsk from './controllers/ask.js';
 import handleQuestions from './controllers/questions.js';
+import cors from 'cors';
 const app = express();
 const port = 3000;
+
+app.use(cors());
+app.use(express.json())
 
 const { Pool } = pg;
 const pool = new Pool({

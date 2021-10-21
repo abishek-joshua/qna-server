@@ -1,11 +1,10 @@
 const handleQuestions = (req, res, pool) => {
     const selectAllFromQuestions = {
-        text: 'SELECT * FROM questions'
+        text: 'SELECT * FROM questions ORDER BY (creation_date)'
     }
-    console.log(req);
     pool
         .query(selectAllFromQuestions)
-        .then(result => res.json("HELLO"))
+        .then(result => res.json(result.rows))
         .then(console.log("Sent."))
         .catch(err => {
             console.log(err)

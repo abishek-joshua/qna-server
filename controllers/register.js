@@ -17,12 +17,15 @@ const handleRegister = (req, res, pool, bcrypt) => {
     }
 
 
-    pool.query('BEGIN')
-        .then(result => pool
+    pool
+    .query('BEGIN')       
+    .then(result => 
+        pool
             .query(insertIntoUsers)
             .then(result => pool
                 .query(insertIntoLogin)
-                .then(result => pool
+                .then(result => 
+                    pool
                     .query('COMMIT')
                     .then(result => res.json("Succesfully Registered. Login NOW"))
                 )
