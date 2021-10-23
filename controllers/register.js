@@ -27,7 +27,7 @@ const handleRegister = (req, res, pool, bcrypt) => {
                 .then(result => 
                     pool
                     .query('COMMIT')
-                    .then(result => res.json("Succesfully Registered. Login NOW"))
+                    .then(result => res.status(200).json("Succesfully Registered. Login NOW"))
                 )
             )
         )

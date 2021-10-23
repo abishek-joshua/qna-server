@@ -2,7 +2,6 @@ const handleAsk = (req, res, pool) => {
     console.log(req.body);
     const { question_text, roll_number } = req.body;
     const creation_date = new Date();
-    console.log("wkwgwgwv : ", creation_date);
     const insertIntoQuestions = {
         text: `INSERT INTO 
         questions(creation_date, question_text, roll_number, answer_count)
