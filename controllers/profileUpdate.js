@@ -11,13 +11,10 @@ const handleProfileUpdate = (req, res, pool) => {
     }
     pool
         .query(updateUsers)
-        .then(result => {
-            console.log(result);
-            res.status(200).json("profile updated")
-        })
+        .then(result => res.json("success"))
         .catch(err => {
             console.error(err)
-            res.status(400).json("error updating")
+            res.json(err)
         })
 }
 

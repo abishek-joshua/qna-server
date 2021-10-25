@@ -10,10 +10,10 @@ const handleAsk = (req, res, pool) => {
     }
     pool
         .query(insertIntoQuestions)
-        .then(result => res.json("asked"))
+        .then(result => res.json("success"))
         .catch(err => {
             console.log(err)
-            res.json("error asking")
+            res.json(err)
         });
 }
 

@@ -22,13 +22,15 @@ const pool = new Pool({
   port: 5432,
 })
 
-app.get('/', (req, res) => handleQuestions(req, res, pool));
+app.post('/signin', (req, res) => handleSignin(req, res, pool, bcrypt));
 
 app.post('/register', (req, res) => handleRegister(req, res, pool, bcrypt));
 
-app.post('/ask', (req, res) => handleAsk(req, res, pool));
+app.get('/profile', (req, res) => handleProfile(req, res, pool));
 
-app.post('/signin', (req, res) => handleSignin(req, res, pool, bcrypt));
+app.get('/', (req, res) => handleQuestions(req, res, pool));
+
+app.post('/ask', (req, res) => handleAsk(req, res, pool));
 
 app.post('/profile-update', (req, res) => handleProfileUpdate(req, res, pool));
 

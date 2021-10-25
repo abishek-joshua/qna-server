@@ -27,14 +27,14 @@ const handleRegister = (req, res, pool, bcrypt) => {
                     .then(result =>
                         pool
                             .query('COMMIT')
-                            .then(result => res.status(200).json("done"))
+                            .then(result => res.json("success"))
                     )
                 )
         )
         .catch(err => {
-            console.error(err.detail)
             pool.query('ROLLBACK')
-            res.status(400).json(err)
+            console.error(err.detail)
+            res.json(err)
         })
 
 }
