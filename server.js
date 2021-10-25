@@ -8,6 +8,8 @@ import handleAsk from './controllers/ask.js';
 import handleSignin from './controllers/signin.js';
 import handleProfileUpdate from './controllers/profileUpdate.js';
 import handleProfile from './controllers/profile.js';
+import handleAnswers from './controllers/answers.js';
+import handlePostAnswers from './controllers/post_answers.js';
 const app = express();
 const port = 3000;
 
@@ -34,6 +36,12 @@ app.get('/', (req, res) => handleQuestions(req, res, pool));
 app.post('/ask', (req, res) => handleAsk(req, res, pool));
 
 app.post('/profile-update', (req, res) => handleProfileUpdate(req, res, pool));
+
+app.post('/answers',(req,res) => handleAnswers(req,res,pool));
+
+app.post('/post_answers',(req,res) => handlePostAnswers(req,res,pool));
+
+
 
 
 app.listen(port, () => {
