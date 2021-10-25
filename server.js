@@ -43,7 +43,6 @@ app.post('/post_answers',(req,res) => handlePostAnswers(req,res,pool));
 
 
 
-
 app.listen(port, () => {
   console.log(`qna-server has started http://localhost:${port}`);
 })
