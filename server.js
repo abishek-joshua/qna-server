@@ -7,6 +7,7 @@ import handleQuestions from './controllers/questions.js';
 import handleAsk from './controllers/ask.js';
 import handleSignin from './controllers/signin.js';
 import handleProfileUpdate from './controllers/profileUpdate.js';
+import handleProfile from './controllers/profile.js';
 const app = express();
 const port = 3000;
 
@@ -26,7 +27,7 @@ app.post('/signin', (req, res) => handleSignin(req, res, pool, bcrypt));
 
 app.post('/register', (req, res) => handleRegister(req, res, pool, bcrypt));
 
-app.get('/profile', (req, res) => handleProfile(req, res, pool));
+app.post('/profile', (req, res) => handleProfile(req, res, pool));
 
 app.get('/', (req, res) => handleQuestions(req, res, pool));
 
