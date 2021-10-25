@@ -1,9 +1,9 @@
 const handleRegister = (req, res, pool, bcrypt) => {
     const { roll_number, email, password } = req.body;
+    console.log(req.body);
     var hash = bcrypt.hashSync(password, 3);
 
     const creation_date = new Date();
-
 
     const insertIntoUsers = {
         text: 'INSERT INTO users(roll_number,creation_date,email) VALUES($1,$2,$3)',
@@ -18,23 +18,23 @@ const handleRegister = (req, res, pool, bcrypt) => {
 
 
     pool
-    .query('BEGIN')       
-    .then(result => 
-        pool
-            .query(insertIntoUsers)
-            .then(result => pool
-                .query(insertIntoLogin)
-                .then(result => 
-                    pool
-                    .query('COMMIT')
-                    .then(result => res.status(200).json("Succesfully Registered. Login NOW"))
+        .query('BEGIN')
+        .then(result =>
+            pool
+                .query(insertIntoUsers)
+                .then(result => pool
+                    .query(insertIntoLogin)
+                    .then(result =>
+                        pool
+                            .query('COMMIT')
+                            .then(result => res.status(200).json("done"))
+                    )
                 )
-            )
         )
         .catch(err => {
             console.error(err.detail)
             pool.query('ROLLBACK')
-            res.status(400).json("Registration Unsuccessful")
+            res.status(400).json(err)
         })
 
 }

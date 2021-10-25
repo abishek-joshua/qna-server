@@ -1,19 +1,17 @@
-import express, { response } from 'express';
+import express from 'express';
 import pg from 'pg';
-import bcrypt, { compareSync } from 'bcrypt';
-import bodyParser from 'body-parser';
-import handleRegister from './controllers/register.js';
-import handleAsk from './controllers/ask.js';
-import handleQuestions from './controllers/questions.js';
+import bcrypt from 'bcrypt';
 import cors from 'cors';
+import handleRegister from './controllers/register.js';
+import handleQuestions from './controllers/questions.js';
+import handleAsk from './controllers/ask.js';
 import handleSignin from './controllers/signin.js';
+import handleProfileUpdate from './controllers/profileUpdate.js';
 const app = express();
 const port = 3000;
 
 app.use(cors());
-app.use(express.json())
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 const { Pool } = pg;
 const pool = new Pool({
@@ -30,9 +28,9 @@ app.post('/register', (req, res) => handleRegister(req, res, pool, bcrypt));
 
 app.post('/ask', (req, res) => handleAsk(req, res, pool));
 
-app.post('/signin', (req,res) => handleSignin(req,res,pool,bcrypt));
+app.post('/signin', (req, res) => handleSignin(req, res, pool, bcrypt));
 
-
+app.post('/profile-update', (req, res) => handleProfileUpdate(req, res, pool));
 
 
 app.listen(port, () => {

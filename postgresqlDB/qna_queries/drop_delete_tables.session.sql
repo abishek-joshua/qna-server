@@ -2,11 +2,10 @@
 DROP TABLE users;
 -- @block drop login_details table
 DROP TABLE login_details;
--- @block drop answers table
-DROP TABLE answers;
 -- @block drop questions table
 DROP TABLE questions;
-
+-- @block drop answers table
+DROP TABLE answers;
 
 
 --@block delete entries from users

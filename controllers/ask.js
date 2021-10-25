@@ -1,6 +1,5 @@
 const handleAsk = (req, res, pool) => {
-    console.log(req.body);
-    const { question_text, roll_number } = req.body;
+    const { roll_number, question_text } = req.body;
     const creation_date = new Date();
     const insertIntoQuestions = {
         text: `INSERT INTO 
@@ -11,10 +10,10 @@ const handleAsk = (req, res, pool) => {
     }
     pool
         .query(insertIntoQuestions)
-        .then(result => res.json("Question Posted Successfully"))
+        .then(result => res.json("asked"))
         .catch(err => {
             console.log(err)
-            res.json("Error Posting Question")
+            res.json("error asking")
         });
 }
 
