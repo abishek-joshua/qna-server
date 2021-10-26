@@ -1,11 +1,17 @@
 const handleProfileUpdate = (req, res, pool) => {
     console.log(req.body)
-    const { roll_number, user_name, email, about_me } = req.body;
+    let { roll_number, user_name, email, about_me } = req.body;
+    if (user_name === '')
+        user_name = null;
+    if (email === '')
+        email = null;
+    if (about_me === '')
+        about_me = null;
     const updateUsers = {
         text: `UPDATE users SET 
-               user_name = $1, 
-               email = $2,
-               about_me = $3
+               user_name = COALESCE($1, user_name), 
+               email =  COALESCE($2, email),
+               about_me =  COALESCE($3, about_me)
                WHERE roll_number = $4`,
         values: [user_name, email, about_me, roll_number]
     }
